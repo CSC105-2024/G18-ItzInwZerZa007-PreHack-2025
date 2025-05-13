@@ -4,6 +4,8 @@ import './index.css'
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter, useRoutes } from "react-router";
 import routes from '~react-pages'
+import { Toaster } from "./components/ui/sonner";
+import { ModalProvider } from "./providers/modal";
 
 export const App = () => {
   const PageContent = useRoutes(routes);
@@ -11,6 +13,8 @@ export const App = () => {
   return (
     <Suspense fallback={"Loading"}>
       {PageContent}
+      <Toaster />
+      <ModalProvider />
     </Suspense>
   );
 };
