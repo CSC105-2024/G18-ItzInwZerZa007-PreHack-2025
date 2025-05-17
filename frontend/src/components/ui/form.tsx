@@ -104,6 +104,23 @@ function FormLabel({
   )
 }
 
+
+function FormRequiredLabel({
+  className,
+  ...props
+}: React.ComponentProps<"span">) {
+  return (
+    <span
+      className={cn("-ml-1.5 self-center text-red-500", className)}
+      aria-hidden="true"
+      role="presentation"
+      {...props}
+    >
+      *
+    </span>
+  );
+}
+
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
@@ -160,6 +177,7 @@ export {
   Form,
   FormItem,
   FormLabel,
+  FormRequiredLabel,
   FormControl,
   FormDescription,
   FormMessage,

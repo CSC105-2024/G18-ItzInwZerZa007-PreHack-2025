@@ -1,6 +1,9 @@
 {
   "name": "backend",
   "type": "module",
+  "prisma": {
+    "seed": "ts-node --esm prisma/seed.js"
+  },
   "scripts": {
     "dev": "dotenvx run --quiet -- tsx watch src --exclude src/types/**/*",
     "build": "dotenvx run --quiet -- tsc",
@@ -8,7 +11,9 @@
     "prisma:generate": "prisma generate",
     "prisma:init": "prisma migrate dev --name init",
     "prisma:migrate": "prisma migrate dev ",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "prisma db seed",
+    "prisma:simulate": "ts-node --esm prisma/simulate.js"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.41.0",
@@ -16,11 +21,14 @@
     "@hono/zod-validator": "^0.5.0",
     "@prisma/client": "6.7.0",
     "bcryptjs": "^3.0.2",
+    "date-fns": "^4.1.0",
     "hono": "^4.7.8",
-    "prisma": "^6.7.0"
+    "prisma": "^6.7.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   },

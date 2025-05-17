@@ -65,6 +65,40 @@ function PaginationLink({
   )
 }
 
+function PaginationButton ({
+  className,
+  isActive,
+  size = "icon",
+  disabled = false,
+  onClick,
+  ...props
+}: {
+  className?: string
+  isActive?: boolean
+  size?: "default" | "sm" | "lg" | "icon"
+  disabled?: boolean
+  onClick?: () => void
+} & React.ComponentProps<"button">) {
+  return (
+    <button
+      type="button"
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "default" : "outline",
+          size,
+        }),
+        disabled && "pointer-events-none opacity-50",
+        className,
+      )}
+      onClick={onClick}
+      disabled={disabled}
+      {...props}
+    />
+  );
+}
+PaginationButton.displayName = "PaginationButton"
+
 function PaginationPrevious({
   className,
   ...props
@@ -121,6 +155,7 @@ export {
   PaginationContent,
   PaginationLink,
   PaginationItem,
+  PaginationButton,
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
