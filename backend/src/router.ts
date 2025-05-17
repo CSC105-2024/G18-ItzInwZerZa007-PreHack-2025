@@ -53,29 +53,31 @@ async function registerRoute<T extends Env>(app: Hono<T>, baseDir: string, route
             return
         }
 
+        const middlewares = Array.isArray(module.middleware) ? module.middleware : [];
+
         console.log(`\x1b[46m[Router]\x1b[0m \x1b[37m${method.toUpperCase()}\x1b[0m \t ${routePath}`)
 
         switch (method) {
             case 'get':
-                app.get(routePath, handler)
+                app.get(routePath, ...middlewares, handler)
                 break
             case 'post':
-                app.post(routePath, handler)
+                app.post(routePath, ...middlewares, handler)
                 break
             case 'put':
-                app.put(routePath, handler)
+                app.put(routePath, ...middlewares, handler)
                 break
             case 'delete':
-                app.delete(routePath, handler)
+                app.delete(routePath, ...middlewares, handler)
                 break
             case 'patch':
-                app.patch(routePath, handler)
+                app.patch(routePath, ...middlewares, handler)
                 break
             case 'options':
-                app.options(routePath, handler)
+                app.options(routePath, ...middlewares, handler)
                 break
             case 'head':
-                app.get(routePath, handler)
+                app.get(routePath, ...middlewares, handler)
                 break
         }
     } catch (err) {

@@ -3,18 +3,18 @@ import type { ReactNode } from "react";
 
 interface ModalData {
   isOpen: boolean;
-  content: ReactNode;
-  title: string;
-  description?: string;
+  content: React.ReactNode;
+  title: React.ReactNode;
+  description?: React.ReactNode;
 }
 
 interface ModalStore {
   modals: Record<string, ModalData>;
   openModal: (
     id: string,
-    content: ReactNode,
-    title: string,
-    description?: string
+    content: React.ReactNode,
+    title: React.ReactNode,
+    description?: React.ReactNode
   ) => void;
   closeModal: (id: string) => void;
 }

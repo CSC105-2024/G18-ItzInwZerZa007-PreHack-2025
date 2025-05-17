@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useMounted } from "@/hooks/use-mounted.tsx";
+import { useMounted } from "@/hooks/use-mounted";
 import { useModalStore } from "@/store/modal";
 import { Modal } from "@/components/ui/modal";
 
