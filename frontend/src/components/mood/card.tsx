@@ -31,8 +31,8 @@ function MoodCard({ entry }: MoodCardProps) {
   const formattedDate = format(new Date(entry.createdAt), "yyyy-MM-dd '·' h:mm a");
 
   return (
-    <div className="rounded-md bg-gray-50 p-4">
-      <div className="flex items-center justify-center py-4">
+    <div className="rounded-md bg-gray-50 p-7">
+      <div className="flex items-center justify-center py-7">
         <span
           className="text-6xl"
           role="img"
