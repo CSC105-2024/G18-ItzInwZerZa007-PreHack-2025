@@ -3,14 +3,14 @@ import { IconMoodPuzzled, IconPicnicTable } from "@tabler/icons-react";
 
 function LoadingLayout() {
   return (
-    <div className="animate-in flex min-h-svh flex-col items-center justify-center text-center">
+    <div className="animate-in flex min-h-screen flex-col items-center justify-center text-center bg-white font-serif text-[#96C5D7]">
       <IconMoodPuzzled
-        className="size-32 animate-bounce"
+        className="size-32 animate-bounce text-[#96C5D7]"
         aria-label="Loading..."
       />
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-4 mt-4">
         <h1 className="text-5xl font-bold">iMood</h1>
-        <p className="font-mono">Your emotional journal, made beautiful</p>
+        <p className="text-lg text-[#F2A265]">Your emotional journal, made beautiful</p>
       </div>
     </div>
   );

@@ -64,14 +64,14 @@ function Page() {
               <Link
                 to="/account"
                 className={cn(buttonVariants({ variant: "secondary" }),
-                  "bg-[#FC7A66] text-orange-100 text-lg rounded-full px-6 py-2 font-serif",
+                  "bg-[#FC7A66] text-orange-100 text-lg rounded-full px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black",
                 )}
               >
                 My Account
               </Link>
               <Button
                 onClick={() => openAddMoodOverlay({ isEditMode: false })}
-                className="bg-[#85A9CD] text-yellow-100 text-lg rounded-full px-6 py-2 font-serif"
+                className="bg-[#85A9CD] text-yellow-100 text-lg rounded-full px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black"
               >
                 Mood Time!
               </Button>
@@ -80,13 +80,13 @@ function Page() {
             <div className="flex w-full flex-row items-center justify-center gap-4">
               <Link
                 to="/authentication/sign-in"
-                className="rounded-full bg-[#FC7A66] text-white text-sm px-6 py-2 font-serif"
+                className="rounded-full bg-[#FC7A66] text-white text-sm px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black"
               >
                 Sign in
               </Link>
               <Link
                 to="/authentication/sign-up"
-                className="rounded-full bg-orange-300 px-6 py-2 text-sm font-medium shadow-md text-yellow-950"
+                className="rounded-full bg-orange-300 px-6 py-2 text-sm font-medium shadow-md text-white hover:bg-zinc-300 hover:text-black" 
               >
                 Sign up
               </Link>
