@@ -17,16 +17,16 @@ import { useMood } from "@/contexts/mood-context";
 import LoadingLayout from "@/components/layout/loading";
 
 const MOOD_COLORS = {
-  Happy: "#4ade80",
-  Sad: "#60a5fa",
-  Angry: "#f87171",
-  Shy: "#c084fc",
-  Excited: "#facc15",
-  Neutral: "#94a3b8",
-  Romance: "#fb7185",
-  Calm: "#2dd4bf",
-  Awkward: "#f97316",
-  Silly: "#a78bfa",
+  Neutral: "#A0A0A0",   // Soft gray
+  Happy: "#FADB6A",     // Pastel yellow
+  Calm: "#A1E3D8",      // Mint green
+  Excited: "#FFB347",   // Sunset orange
+  Sad: "#A4C8F0",       // Soft blue
+  Silly: "#D3BCE9",     // Lavender pink
+  Angry: "#FF6B6B",     // Coral red
+  Awkward: "#FFA07A",   // Pumpkin orange
+  Shy: "#E2A9E5",       // Orchid pink
+  Romance: "#F4A9A8",   // Soft rose
 };
 
 function Page() {
@@ -133,26 +133,30 @@ function Page() {
   };
 
   return (
-    <div className="flex min-h-svh flex-col items-center">
-      <div className="mx-auto w-full max-w-7xl space-y-8 px-4 py-8 md:space-y-16">
+    <div className="flex min-h-screen flex-col items-center bg-white font-serif text-[#96C5D7]">
+      <div className="relative mx-auto w-full max-w-7xl space-y-16 px-4 py-8">
+
         <section className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4 text-center">
-            <h1 className="text-5xl font-bold">iMood Account</h1>
-            <p className="font-mono">{user.email}</p>
+            <h1 className="text-6xl font-bold">iMood Account</h1>
+            <p className="font-mono text-black">{user.email}</p>
           </div>
-          <div className="flex w-full flex-row items-center justify-center gap-4">
-            <Link to="/" className={cn(buttonVariants({}), "max-w-lg flex-1")}>
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row max-w-lg mx-auto">
+            <Link
+              to="/"
+              className={cn(buttonVariants(), "flex-1 w-full rounded-full bg-[#85A9CD] px-6 py-2 text-sm font-medium shadow-md text-white hover:bg-zinc-300 hover:text-black")}
+            >
               Home
             </Link>
             <Button
-              className="max-w-lg flex-1"
+              className="flex-1 w-full rounded-full bg-red-400 px-6 py-2 text-white font-medium hover:bg-zinc-300 hover:text-black"
               variant="destructive"
               onClick={() => openUserDeleteOverlay({})}
             >
               Delete Account
             </Button>
             <Button
-              className="max-w-lg flex-1"
+              className="flex-1 w-full rounded-full bg-orange-300 px-6 py-2 text-white font-medium hover:bg-zinc-300 hover:text-black"
               variant="secondary"
               onClick={() => openSignOutOverlay({})}
             >
@@ -160,11 +164,12 @@ function Page() {
             </Button>
           </div>
         </section>
+
         <section className="space-y-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div>
-              <h2 className="text-3xl font-bold md:text-4xl">Statistics</h2>
-              <span>Your mood summary over time</span>
+              <h2 className="text-4xl font-bold">Statistics</h2>
+              <span className="text-[#F2A265]">Your mood summary over time</span>
             </div>
           </div>
 
@@ -303,7 +308,7 @@ function Page() {
                                 style={{
                                   backgroundColor:
                                     MOOD_COLORS[
-                                      stat.name as keyof typeof MOOD_COLORS
+                                    stat.name as keyof typeof MOOD_COLORS
                                     ] || "#94a3b8",
                                 }}
                               />

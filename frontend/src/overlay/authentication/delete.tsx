@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button.jsx";
 import { useModalStore } from "@/store/modal.jsx";
 import axiosInstance from "@/lib/axios.ts";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 interface UserDeleteOverlayProps {
   onSuccess?: () => void;
@@ -12,37 +13,33 @@ interface UserDeleteOverlayProps {
 function UserDeleteOverlayContent({ onSuccess }: UserDeleteOverlayProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { closeModal } = useModalStore();
-
-  const userId = 0;
+  const navigate = useNavigate();
 
   async function onDelete() {
-    if (!userId) {
-      toast.error("No user ID provided");
-      return;
-    }
+  setIsLoading(true);
+  try {
+    await axiosInstance.delete("/account"); 
+    toast.success("Account deleted successfully");
+    closeModal("user-delete");
 
-    setIsLoading(true);
-    try {
-      await axiosInstance.delete(`/users/${userId}`);
-      toast.success("User deleted successfully");
-      closeModal("user-delete");
-
-      if (onSuccess) {
-        onSuccess();
-      }
-    } catch (error: any) {
-      console.error("Delete user error:", error);
-      if (error.response?.status === 404) {
-        toast.error("User not found");
-      } else if (error.response?.status === 403) {
-        toast.error("You don't have permission to delete this user");
-      } else {
-        toast.error("Failed to delete user");
-      }
-    } finally {
-      setIsLoading(false);
+    if (onSuccess) {
+      onSuccess();
     }
+    navigate("/");
+    
+  } catch (error: any) {
+    console.error("Delete user error:", error);
+    if (error.response?.status === 404) {
+      toast.error("User not found");
+    } else if (error.response?.status === 403) {
+      toast.error("You don't have permission to delete this account");
+    } else {
+      toast.error("Failed to delete account");
+    }
+  } finally {
+    setIsLoading(false);
   }
+}
 
   return (
     <div className="space-y-4">

@@ -44,76 +44,68 @@ function Page() {
   return (
     <div
       className={cn(
-        "flex min-h-svh flex-col items-center",
-        isAuthenticated ? "justify-start" : "justify-center",
+        "flex min-h-screen flex-col items-center bg-white font-serif text-[#96C5D7]",
+        isAuthenticated ? "justify-start" : "justify-center"
       )}
     >
       <div
         className={cn(
-          "mx-auto w-full space-y-8 px-4 py-8 md:space-y-16",
-          isAuthenticated ? "max-w-7xl" : "max-w-xl",
+          "relative mx-auto w-full px-7 py-8",
+          isAuthenticated ? "max-w-7xl space-y-16" : "max-w-xl space-y-8"
         )}
       >
-        <section className="flex flex-col items-center gap-8">
-          <div className="flex flex-col items-center gap-4 text-center">
-            <h1 className="text-5xl font-bold">iMood</h1>
-            <p>Your emotional journal, made beautiful</p>
+        <section className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <h1 className="text-7xl font-bold">iMood</h1>
+            <p className="text-orange-400 text-xl">Your emotional journal, made beautiful.</p>
           </div>
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <div className="flex w-full flex-col items-center justify-center gap-4 md:flex-row">
               <Link
                 to="/account"
-                className={cn(
-                  buttonVariants({ variant: "secondary" }),
-                  "w-full max-w-lg flex-1",
+                className={cn(buttonVariants({ variant: "secondary" }),
+                  "bg-[#FC7A66] text-orange-100 text-lg rounded-full px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black",
                 )}
               >
                 My Account
               </Link>
               <Button
-                className="max-w-lg flex-1 max-sm:w-full"
                 onClick={() => openAddMoodOverlay({ isEditMode: false })}
+                className="bg-[#85A9CD] text-yellow-100 text-lg rounded-full px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black"
               >
-                New Entries
+                Mood Time!
               </Button>
             </div>
-          )}
-          {!isAuthenticated && (
+          ) : (
             <div className="flex w-full flex-row items-center justify-center gap-4">
               <Link
                 to="/authentication/sign-in"
-                className={cn(
-                  buttonVariants({ variant: "secondary" }),
-                  "max-w-lg flex-1",
-                )}
+                className="rounded-full bg-[#FC7A66] text-white text-sm px-6 py-2 font-serif hover:bg-zinc-300 hover:text-black"
               >
                 Sign in
               </Link>
               <Link
                 to="/authentication/sign-up"
-                className={cn(buttonVariants({}), "max-w-lg flex-1")}
+                className="rounded-full bg-orange-300 px-6 py-2 text-sm font-medium shadow-md text-white hover:bg-zinc-300 hover:text-black" 
               >
                 Sign up
               </Link>
             </div>
           )}
         </section>
+
         {isAuthenticated && (
           <section className="space-y-8">
             <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
               <div>
-                <h2 className="text-center text-3xl font-bold md:text-left md:text-4xl">
-                  Mood History
-                </h2>
-                <span>Your emotional journey</span>
+                <h2 className="text-5xl font-bold">Recent Mood</h2>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-muted-foreground text-sm">
+                <span className="text-sm text-gray-600 font-sans">
                   {pagination && pagination.total > 0 ? (
                     <>
                       Showing entries {(currentPage - 1) * entriesPerPage + 1}-
-                      {Math.min(currentPage * entriesPerPage, pagination.total)}{" "}
-                      of {pagination.total}
+                      {Math.min(currentPage * entriesPerPage, pagination.total)} of {pagination.total}
                     </>
                   ) : (
                     "No entries"
@@ -125,14 +117,14 @@ function Page() {
             {isLoading && entries.length > 0 && (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {Array.from({ length: 9 }).map((_, index) => (
-                  <Skeleton key={index} className="flex justify-center py-4 min-h-[15rem]"/>
+                  <Skeleton key={index} className="flex justify-center py-4 min-h-[15rem]" />
                 ))}
               </div>
             )}
 
             {!isLoading && entries.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
                   {entries.map((entry) => (
                     <MoodCard key={entry.id} entry={entry} />
                   ))}
@@ -153,7 +145,7 @@ function Page() {
           </section>
         )}
       </div>
-      <span className="py-2 font-mono">
+      <span className="py-2 font-mono text-[#96C5D7]">
         &copy; {new Date().getFullYear()} iMood
       </span>
     </div>
