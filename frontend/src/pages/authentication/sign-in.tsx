@@ -53,7 +53,7 @@ function Page() {
     } catch (error: any) {
       toast.error(
         error.response?.data?.message ||
-          "Failed to sign in. Please check your credentials.",
+        "Failed to sign in. Please check your credentials.",
       );
       console.error(error);
     } finally {
@@ -62,17 +62,17 @@ function Page() {
   }
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <div className="mx-auto w-full max-w-xl space-y-8 px-4 py-8 md:space-y-16">
-        <section className="flex flex-col items-center gap-4 text-center">
-          <h1 className="text-5xl font-bold">iMood</h1>
-          <p className="">Your emotional journal, made beautiful</p>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-white font-serif text-[#85A9CD]">
+      <div className="mx-auto w-full max-w-xl space-y-16 px-4 py-8">
+        <section className="flex flex-col items-center gap-6 text-center">
+          <h1 className="text-6xl font-bold">iMood</h1>
+          <p className="text-[#F2A265] text-lg">Your emotional journal, made beautiful</p>
           <div className="flex w-full flex-row items-center justify-center gap-4">
             <Link
               to="/authentication/sign-in"
               className={cn(
                 buttonVariants({ variant: "secondary" }),
-                "max-w-lg flex-1",
+                "max-w-lg flex-1 ",
               )}
             >
               Sign in
@@ -81,7 +81,7 @@ function Page() {
               to="/authentication/sign-up"
               className={cn(
                 buttonVariants({ variant: "default" }),
-                "max-w-lg flex-1",
+                "max-w-lg flex-1 bg-[#331D12] hover:bg-[#331d12e8]",
               )}
             >
               Sign up
@@ -133,7 +133,7 @@ function Page() {
               />
             </div>
             <div className="space-y-4">
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-[#331D12] hover:bg-[#331d12e8]" disabled={isLoading}>
                 {isLoading ? "Signing in..." : "Sign in"}
               </Button>
             </div>
