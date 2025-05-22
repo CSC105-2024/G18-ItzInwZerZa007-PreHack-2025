@@ -28,7 +28,7 @@ This is a monorepo containing two main applications:
 
 **Development:**
 - **PNPM Workspaces** - Efficient monorepo package management
--  **Turbo** - High-performance build system
+- **Turbo** - High-performance build system
 - **ESLint + Prettier** - Code quality and formatting
 
 ## Quick Start
@@ -83,6 +83,18 @@ This is a monorepo containing two main applications:
    pnpm dev:frontend  # Frontend only (http://localhost:5173)
    pnpm dev:backend   # Backend only (http://localhost:3000)
    ```
+
+### Database Schema
+
+Key entities in our system:
+- **Users**
+- **Mood** - Available Moods
+- **History** - Users' mood tracking records
+
+## API Endpoints
+
+| Method | Route | Description                          |
+|--------|-------|--------------------------------------|
 
 ## Deployment
 
