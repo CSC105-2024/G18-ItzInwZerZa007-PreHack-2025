@@ -1,98 +1,125 @@
-# G18 - iMood
+# G18 - iMood (ItzInwZerZa007)
 
-## Project Structure
+## Architecture
 
-This project is divided into two main parts: **frontend** and **backend**. Each part has its own dependencies and setup instructions.
+This is a monorepo containing two main applications:
 
-- `frontend/`: iMood web application (Next.js + Tailwind)
-- `backend/`: API and database logic (Hono + Prisma)
-
----
-
-## Installation
-
-### Enable Corepack
-
-Ensure you have **Node.js v16+** and enable Corepack to manage package managers like `pnpm`:
-
-```sh
-corepack enable
-corepack use pnpm@latest
+```
+📦 G18-ItzInwZerZa007-PreHack-2025/
+├── 🎨 frontend/     # React SPA with Vite
+├── 🔧 backend/      # Node.js API with Hono
 ```
 
-### Install Dependencies
+### Tech Stack
 
-```sh
-pnpm install
-```
+**Frontend:**
+- **Vite + React 19** - Lightning-fast development and modern React features
+- **Tailwind CSS** - Utility-first styling with custom design system
+- **Radix UI** - Accessible, unstyled UI components
+- **Shadcn UI** - UI Library based on Radix UI components
+- **Zustand** - Lightweight state management
+- **React Hook Form** - Performant form handling with validation
+- **React Router** - Client-side routing
 
----
+**Backend:**
+-  **Hono.js** - Fast, lightweight web framework for Edge
+- ️ **Prisma + Mysql** - Type-safe database access and migrations
+-  **JWT Authentication** - Secure user sessions with HTTP-only cookies
 
-## Running the Project
+**Development:**
+- **PNPM Workspaces** - Efficient monorepo package management
+-  **Turbo** - High-performance build system
+- **ESLint + Prettier** - Code quality and formatting
 
-### Run Both Frontend & Backend
+## Quick Start
 
-```sh
-pnpm --filter frontend run dev & pnpm --filter backend run dev
-```
+### Prerequisites
+- **Node.js 22+** (LTS recommended)
+- **PNPM 9+** (package manager)
 
----
+### Installation
 
-### Run Frontend Only
-
-```sh
-pnpm --filter frontend run dev
-```
-
-### Run Backend Only
-
-```sh
-pnpm --filter backend run dev
-```
-
----
-
-## How to Set Up the Backend (Simplified Explanation)
-
-In our project, we use `pnpm` as the package manager.
-
-After running:
-
-```sh
-pnpm install
-```
-
-You don’t need to do anything else for the **frontend** — it's ready to go.
-
-But for the **backend**, here are the steps:
-
-1. First, generate an environment file by copying the example:
+1. **Clone the repository**
    ```bash
-   cp .env.example .env
+   git clone https://github.com/CSC105-2024/G18-ItzInwZerZa007-PreHack-2025.git
+   cd G18-ItzInwZerZa007-PreHack-2025
    ```
 
-2. Then, open the new `.env` file and set your database variables:
-   - `DATABASE_URL`
-   - `SHADOW_DATABASE_URL`
-
-3. Next, run this command to initialize Prisma:
+2. **Enable Corepack for package manager consistency**
    ```bash
-   pnpm run prisma:init
+   corepack enable
+   corepack use pnpm@latest
    ```
-   > You can find this script in the `backend/package.json` file.
 
-4. At this point, the project is almost ready.  
-   However, the server still has no mood data — so run:
+3. **Install all dependencies**
    ```bash
+   pnpm install
+   ```
+
+4. **Set up environment variables**
+   ```bash
+   # Backend configuration
+   cp backend/.env.example backend/.env
+   
+   # Frontend configuration  
+   cp frontend/.env.example frontend/.env
+   ```
+
+5. **Initialize the database**
+   ```bash
+   cd backend
+   pnpm prisma:generate
+   pnpm prisma:init
    pnpm run prisma:seed
+   pnpm run prisma:simulate # (Optional) If you want to simulate a user who already has mood data
    ```
-   This will add the default moods into the database.
 
-5. *(Optional)* If you want to simulate a user who already has mood data, run:
+6. **Start development servers**
    ```bash
-   pnpm run prisma:simulate
+   # Run both frontend and backend
+   pnpm dev
+   
+   # Or run individually
+   pnpm dev:frontend  # Frontend only (http://localhost:5173)
+   pnpm dev:backend   # Backend only (http://localhost:3000)
    ```
 
-   That’s it — you're ready to start working on the project!
+## Deployment
+
+### Environment Variables
+
+**Backend (.env)**
+```env
+DATABASE_URL="mysql://user:password@host:3306/db"
+SHADOW_DATABASE_URL="mysql://user:password@host:3306/db_shadow"
+JWT_SECRET="your-secret-key"
+```
+
+**Frontend (.env)**
+```env
+VITE_API_URL="http://localhost:3000"
+```
+
+### Manual Deployment
+```bash
+# Build frontend
+cd frontend && pnpm build
+
+# Build backend  
+cd backend && pnpm build
+
+# Start production server
+cd backend && pnpm start
+```
+
+## 👥 Team
+
+**G18 Development Team:**
+- **Theerawat Patthawee** ([@ttwrpz](https://github.com/ttwrpz)) - Fullstack
+- **Karnsinee Phophutaraksa** ([@Tienkarnsinee](https://github.com/Tienkarnsinee)) - Fullstack & UX/UI
+- **Chotiwet Wisitworanat** ([@Sunthewhat](https://github.com/Sunthewhat)) - Mentor
+- **Thanatat Wongabut** ([@thanatat-wong](https://github.com/thanatat-wong)) - Mentor
 
 ---
+
+Made with ❤️ by the G18 Team | **iMood - Your emotional journal, made beautiful.**
