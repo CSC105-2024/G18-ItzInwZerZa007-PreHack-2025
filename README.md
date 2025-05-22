@@ -93,8 +93,37 @@ Key entities in our system:
 
 ## API Endpoints
 
-| Method | Route | Description                          |
-|--------|-------|--------------------------------------|
+### General Endpoints
+
+| Method | Route | Description                                                                     | Auth Required |
+|--------|-------|---------------------------------------------------------------------------------|---------------|
+| `GET`  | `/`   | Health check endpoint that returns API welcome message and version information. | No            |
+
+### Authentication Endpoints
+
+| Method   | Route                     | Description                                                                                                        | Auth Required |
+|----------|---------------------------|--------------------------------------------------------------------------------------------------------------------|---------------|
+| `POST`   | `/authentication/sign-in` | Authenticates a user with email and password. Sets authentication cookie on success.                               | No            |
+| `POST`   | `/authentication/sign-up` | Creates a new user account with email, password, and password confirmation. Sets authentication cookie on success. | No            |
+| `DELETE` | `/authentication/session` | Signs out the current user by clearing the authentication cookie.                                                  | No            |
+
+### User Management Endpoints
+
+| Method   | Route                 | Description                                                                                                                                                          | Auth Required |
+|----------|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| `GET`    | `/me`                 | Retrieves the current authenticated user's profile information (id, email).                                                                                          | Yes           |
+| `DELETE` | `/account`            | Permanently deletes the current user's account and all associated mood data.                                                                                         | Yes           |
+| `GET`    | `/account/statistics` | Retrieves mood statistics for the authenticated user with configurable time periods (weekly, monthly, yearly). Returns summary stats and aggregated data for charts. | Yes           |
+
+### Mood Management Endpoints
+
+| Method   | Route          | Description                                                                                                        | Auth Required |
+|----------|----------------|--------------------------------------------------------------------------------------------------------------------|---------------|
+| `GET`    | `/moods`       | Retrieves all available mood types/categories that users can select from.                                          | Yes           |
+| `GET`    | `/history`     | Retrieves paginated mood history entries for the authenticated user. Supports `limit` and `page` query parameters. | Yes           |
+| `POST`   | `/history`     | Creates a new mood entry with mood ID and optional note (max 25,000 characters).                                   | Yes           |
+| `PATCH`  | `/history/:id` | Updates an existing mood entry's mood type and/or note.                                                            | Yes           |
+| `DELETE` | `/history/:id` | Deletes a specific mood entry belonging to the authenticated user.                                                 | Yes           |
 
 ## Deployment
 
