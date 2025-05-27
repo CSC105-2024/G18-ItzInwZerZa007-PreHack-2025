@@ -76,10 +76,6 @@ This is a monorepo containing two main applications:
 
 6. **Start development servers**
    ```bash
-   # Run both frontend and backend
-   pnpm dev
-   
-   # Or run individually
    pnpm dev:frontend  # Frontend only (http://localhost:5173)
    pnpm dev:backend   # Backend only (http://localhost:3000)
    ```
